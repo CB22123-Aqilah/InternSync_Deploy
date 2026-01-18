@@ -1,0 +1,98 @@
+/* ----------- GLOBAL STYLES ------------ */
+body {
+    background: #f3f4f6;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ----------- NAVBAR ------------ */
+.navbar {
+    background: #1e3a8a;
+    padding: 15px 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: #93c5fd;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ----------- CARD ------------ */
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ----------- TABLE ------------ */
+table {
+    border-collapse: collapse;
+}
+
+table th {
+    background: #1e3a8a;
+    color: white;
+    font-weight: 600;
+}
+
+table td, table th {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+}
+
+tr:hover {
+    background: #f0f7ff;
+}
+
+/* ----------- BUTTONS ------------ */
+.btn-primary {
+    background: #2563eb;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+/* FORM FIELDS */
+input, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+/* Centered Auth Card */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.auth-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
