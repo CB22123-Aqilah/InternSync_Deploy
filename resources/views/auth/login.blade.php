@@ -9,6 +9,42 @@
         Login to continue using <span class="fw-semibold">InternSync</span>
     </p>
 
+    {{-- Error Message --}}
+    @if(session('error'))
+        <div class="mb-4 px-4 py-3 rounded-4
+                    d-flex gap-3 align-items-center
+                    shadow-sm"
+            style="
+                background: rgba(220,53,69,0.08);
+                border-left: 4px solid #dc3545;
+            ">
+
+            <div class="fs-4">❌</div>
+
+            <div class="small text-danger fw-semibold">
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
+
+    {{-- Success Message --}}
+    @if(session('success'))
+        <div class="mb-4 px-4 py-3 rounded-4
+                    d-flex gap-3 align-items-center
+                    shadow-sm"
+            style="
+                background: rgba(25,135,84,0.08);
+                border-left: 4px solid #198754;
+            ">
+
+            <div class="fs-4">✅</div>
+
+            <div class="small text-success fw-semibold">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('login.submit') }}">
         @csrf
         <div class="mb-3">

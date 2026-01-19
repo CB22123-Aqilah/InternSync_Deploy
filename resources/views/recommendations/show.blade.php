@@ -102,6 +102,11 @@
             </button>
         </form>
 
+        <!-- Back Button -->
+        <a href="{{ route('recommendations.index') }}"
+           class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow">
+            ← Back to List
+        </a>
     </div>
     @endif
 

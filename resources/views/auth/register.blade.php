@@ -9,6 +9,30 @@
         Please fill in your details to create an InternSync account
     </p>
 
+    {{-- Error Message --}}
+    @if(session('error') || $errors->any())
+        <div class="mb-4 px-4 py-3 rounded-4
+                    d-flex gap-3 align-items-start
+                    shadow-sm"
+            style="
+                background: rgba(220,53,69,0.08);
+                border-left: 4px solid #dc3545;
+            ">
+
+            <div class="small text-danger">
+                <ul class="mb-0 ps-3">
+                    @if(session('error'))
+                        <li>{{ session('error') }}</li>
+                    @endif
+
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('register.submit') }}">
         @csrf
 

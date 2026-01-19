@@ -37,6 +37,11 @@ class AuthController extends Controller
     'year_of_study' => 'required|integer|min:1|max:5',
     ]);
 
+    // Umpsa Email Only
+    if (!str_ends_with($validated['email'], '@adab.umpsa.edu.my')) {
+        return back()->with('error', 'Only UMPSA students can register.');
+    }
+
     $firebase = (new Factory)
         ->withServiceAccount(base_path('firebase_credentials.json'))
         ->withDatabaseUri('https://internsync-8baad-default-rtdb.asia-southeast1.firebasedatabase.app/');
@@ -45,11 +50,15 @@ class AuthController extends Controller
     $database = $firebase->createDatabase();
 
     // ✅ Always create STUDENT
-    $user = $auth->createUser([
-        'email' => $validated['email'],
-        'password' => $validated['password'],
-        'displayName' => $validated['name'],
-    ]);
+    try {
+        $user = $auth->createUser([
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+            'displayName' => $validated['name'],
+        ]);
+    } catch (EmailExists $e) {
+        return back()->withInput()->with('error', 'Email already registered.');
+    }
 
     $database->getReference('users/' . $user->uid)->set([
         'name' => $validated['name'],
@@ -58,6 +67,7 @@ class AuthController extends Controller
         'created_at' => now()->toDateTimeString(),
         'profile' => [
         'phone' => $validated['phone'],
+        'address' => 'address',
         'programme' => $validated['programme'],
         'cgpa' => $validated['cgpa'],
         'year_of_study' => $validated['year_of_study'],
@@ -133,12 +143,8 @@ class AuthController extends Controller
             return back()->with('error', 'Invalid role.');
 
 
-        } catch (InvalidPassword $e) {
-            return back()->with('error', 'Wrong password.');
-        } catch (UserNotFound $e) {
-            return back()->with('error', 'User does not exist in Firebase Auth.');
-        } catch (\Throwable $e) {
-            return back()->with('error', 'Login failed: '.$e->getMessage());
+        } catch (InvalidPassword | UserNotFound $e) {
+            return back()->withInput()->with('error', 'Invalid email or password.');
         }
     }
 

@@ -30,7 +30,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             @foreach($internship_industries as $item)
-            <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6 flex flex-col justify-between">
+            <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition 
+            p-6 flex flex-col justify-between 
+            overflow-hidden break-words">
 
                 <div>
                     <h4 class="text-xl font-semibold text-gray-800 mb-2">{{ $item['internship_title'] }}</h4>
