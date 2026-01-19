@@ -144,3 +144,4 @@ Route::get('/test-firebase', function () {
 // Guest
 Route::get('/guest/form', [GuestController::class, 'create'])->name('guest.form');
 Route::post('/guest/store', [GuestController::class, 'store'])->name('guest.store');
+Route::get('/dashboard/guest', [GuestController::class, 'dashboard'])->name('dashboard.guest');

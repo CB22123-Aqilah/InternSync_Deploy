@@ -47,5 +47,24 @@ class GuestController extends Controller
         return redirect()->route('dashboard.guest')->with('success', 'Internship submitted. Awaiting approval.');
     }
     
+    public function dashboard()
+    {
+        // Fetch all submissions from Firebase
+        $data = $this->database->getReference($this->table)->getValue();
+
+        $recommendations = [];
+
+        if ($data) {
+            foreach ($data as $key => $item) {
+                $item['id'] = $key;
+                $recommendations[] = $item;
+            }
+        }
+
+        // Latest first
+        $recommendations = array_reverse($recommendations);
+
+        return view('dashboard.guest', compact('recommendations'));
+    }
 
 }

@@ -48,10 +48,10 @@
                 'bg' => 'linear-gradient(180deg, #ffc3c7ff 30%, #ffffff 75%)'
             ],
             'guest' => [
-                'primary' => '#e6eef8',
-                'primaryDark' => '#cfe3f8',
-                'accent' => '#f3f4f6',
-                'bg' => 'linear-gradient(180deg, #d2d6ddff 30%, #ffffff 75%)'
+                'primary' => '#ebf9b7',
+                'primaryDark' => '#ebfc57',
+                'accent' => '#b3fb9e',
+                'bg' => 'linear-gradient(180deg, #ebffab 30%, #ffffff 75%)'
             ],
         ];
         $palette = $palettes[$role] ?? $palettes['guest'];
